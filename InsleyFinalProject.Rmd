@@ -1,0 +1,31 @@
+---
+title: "Final Project"
+author: "Drew Insley"
+date: "12/04/18"
+output: html_notebook
+---
+
+## Set Up
+
+```{r message=FALSE, warning=FALSE}
+library(DataComputing)
+library(rvest)
+library(lubridate)
+library(tidyr)
+```
+
+
+```{r}
+page <-  "https://data.cityofnewyork.us/Public-Safety/Fire-Incident-Dispatch-Data/8m42-w767/data"
+
+xpath <- '//*[@id="renderTypeContainer"]/div[4]/div[2]/div/div[4]/div[1]/table'
+
+
+table_list <- 
+  page %>%
+  read_html() %>%
+  html_nodes(xpath= xpath) %>%
+  html_table(fill = TRUE)
+
+FireIncidents <- table_list[[1]]
+```
