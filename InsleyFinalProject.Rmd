@@ -14,18 +14,21 @@ library(lubridate)
 library(tidyr)
 ```
 
+## Project
+
+```{r echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+# Get the dataset
+getwd()
+setwd("~/Downloads")
+
+FireIncidents <- read_csv("Fire_Incident_Dispatch_Data.csv")
+```
 
 ```{r}
-page <-  "https://data.cityofnewyork.us/Public-Safety/Fire-Incident-Dispatch-Data/8m42-w767/data"
+# Inspect the Data
 
-xpath <- '//*[@id="renderTypeContainer"]/div[4]/div[2]/div/div[4]/div[1]/table'
+glimpse(FireIncidents)
 
-
-table_list <- 
-  page %>%
-  read_html() %>%
-  html_nodes(xpath= xpath) %>%
-  html_table(fill = TRUE)
-
-FireIncidents <- table_list[[1]]
 ```
+
+
