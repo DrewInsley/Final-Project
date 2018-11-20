@@ -17,11 +17,11 @@ library(tidyr)
 ## Project
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
-# Get the dataset
+# Get the Data
 getwd()
 setwd("~/Downloads")
 
-FireIncidents <- read_csv("Fire_Incident_Dispatch_Data.csv")
+FireIncidents <- read.csv("Fire_Incident_Dispatch_Data.csv")
 ```
 
 ```{r}
@@ -33,13 +33,25 @@ str(FireIncidents)
 # Clean up the data
 pattern <- ("[0-9]{2}[:][0-9]{2}[:][0-9]{2}")
 
+FireIncidents <-
 FireIncidents %>%
   select(INCIDENT_BOROUGH, INCIDENT_DATETIME, ENGINES_ASSIGNED_QUANTITY, INCIDENT_CLASSIFICATION_GROUP, ZIPCODE, LADDERS_ASSIGNED_QUANTITY) %>%
   rename(Borough = INCIDENT_BOROUGH, Date = INCIDENT_DATETIME, Engines = ENGINES_ASSIGNED_QUANTITY, Type = INCIDENT_CLASSIFICATION_GROUP, Ladders = LADDERS_ASSIGNED_QUANTITY, ZipCode = ZIPCODE) %>%
   mutate(Date = gsub(pattern, " ", Date)) %>%
   mutate(Date = gsub("[AMP]{2}", " ", Date)) %>%
   mutate(Date = mdy(Date))
+
+FireIncidents
 ```
+
+```{r}
+# Summarise the Data
+
+FireIncidents
+
+
+```
+
 
 
 
