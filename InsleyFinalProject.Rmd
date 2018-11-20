@@ -49,11 +49,11 @@ FireIncidents
 FireCount <-
 FireIncidents %>%
   group_by(Borough) %>%
-  summarise(Count=n()) %>%
-  arrange(desc(Count))
+  summarise(Incidents=n()) %>%
+  arrange(desc(Incidents))
 
 FireCount %>%
-  ggplot(aes(reorder(Borough, desc(Count)), Count)) +
+  ggplot(aes(reorder(Borough, desc(Incidents)), Incidents)) +
   geom_bar(stat="identity", fill="blue", color="red", alpha=.2) +
   xlab("Borough")
   
@@ -66,18 +66,19 @@ FireCount %>%
 FireLadders <-
 FireIncidents %>%
   group_by(Borough) %>%
-  summarise(Count=sum(Ladders)) %>%
-  arrange(desc(Count))
+  summarise(Ladders=sum(Ladders)) %>%
+  arrange(desc(Ladders))
 
 FireLadders %>%
-  ggplot(aes(reorder(Borough, desc(Count)), Count)) +
+  ggplot(aes(reorder(Borough, desc(Ladders)), Ladders)) +
   geom_bar(stat="identity", fill="red", color="blue", alpha=.2) +
   xlab("Borough")
   
 
 ```
 
-**The number of ladders deployed does match with the amount of fire incidents by borough. In fact, the descending order is the exact same. Let's examine which days these incidents were most likely to occur.**
+**The number of ladders deployed does match with the amount of fire incidents by borough. In fact, the descending order is the exact same. Let's see which days these fires were most likely to occur.**
+
 
 ```{r}
 FireDays <-
@@ -93,13 +94,6 @@ FireDays %>%
 ```
 
 **Apparently people really like to start fires in February! In this case, the lower the rank, the higher the amount of fires. The 5 days with the most amounts of fires are all in the second month!**
-
-
-
-
-
-
-
 
 
 
