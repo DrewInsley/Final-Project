@@ -53,7 +53,18 @@ FireIncidents %>%
   
 ```
 
+**The most number of fire incidents occured in Brooklyn, with a total count of 777,725 occurances. Let's see if Brooklyn has the highest number of ladders deployed, as would be expected.**
 
+```{r}
+# How many ladders were deployed?
+FireIncidents %>%
+  group_by(Borough) %>%
+  summarise(count=sum(Ladders)) %>%
+  ggplot(aes(reorder(Borough, desc(count)), count)) +
+  geom_bar(stat="identity", fill="red", color="blue")
+  
+
+```
 
 
 
