@@ -79,7 +79,6 @@ FireLadders %>%
 
 **The number of ladders deployed does match with the amount of fire incidents by borough. In fact, the descending order is the exact same. Let's see which days these fires were most likely to occur.**
 
-
 ```{r}
 FireDays <-
 FireIncidents %>%
