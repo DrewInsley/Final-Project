@@ -84,13 +84,17 @@ FireDays <-
 FireIncidents %>%
   group_by(Date) %>%
   summarise(Count=n()) %>%
-  arrange(desc(Count))
+  mutate(Rank = rank(Count)) %>%
+  select(Date, Rank) %>%
+  arrange(desc(Rank))
 
 FireDays %>%
   head(5)
 ```
 
-**Apparently people really like to start fires in February! The 5 days with the most amounts of fires are all in the second month.**
+**Apparently people really like to start fires in February! In this case, the lower the rank, the higher the amount of fires. In other words, the lower the rank the worse the day in terms of fire incidents.The 5 days with the most amounts of fires are all in the second month!**
+
+
 
 
 
