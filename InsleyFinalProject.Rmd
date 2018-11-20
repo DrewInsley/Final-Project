@@ -45,11 +45,12 @@ FireIncidents
 ```
 
 ```{r}
-# Summarise the Data
+# Which borough had the most number of fire incidents?
 
-FireIncidents
-
-
+FireIncidents %>%
+  group_by(Borough) %>%
+  summarise(count=n())
+  
 ```
 
 
