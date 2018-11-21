@@ -2,7 +2,9 @@
 title: "Final Project"
 author: "Drew Insley"
 date: "12/04/18"
-output: html_document
+output:
+  html_notebook:
+    theme: "journal"
 ---
 
 ## Set Up
@@ -15,15 +17,7 @@ library(tidyr)
 ```
 
 ## Introduction
-
-
-
-
-
-
-
-
-
+<span style="color:red">**The data frame used for this project comes from data.cityofnewyork.us. It is entitled "Fire Incident Dispatch Data", and it contains data spanning from 2013-2017. I intend to demonstrate my skills with R by scraping, cleaning, and using this data for analysis.**</span>
 
 ## Project
 
@@ -55,7 +49,7 @@ FireIncidents %>%
 FireIncidents
 ```
 
-**Now we have a dataset we can use! Let's make a chart of counts for incidents and ladders by borough, so that we can graph these data!**
+<span style="color:red">**Now we have a dataset we can use! Let's make a chart of counts for incidents and ladders by borough, so that we can graph these data!**</span>
 
 ```{r}
 # Make a chart of counts
@@ -89,7 +83,7 @@ FireJoin %>%
   xlab("Borough")
 ```
 
-**The graph shows the descending order of fire incidents in the five boroughs of New York. As one can see, Brooklyn had the most fire incidents with 777,725 occurances. Let's see if the number of ladders deployed by borough will match with the amount of incidents by borough.**
+<span style="color:red">**The graph shows the descending order of fire incidents in the five boroughs of New York. As one can see, Brooklyn had the most fire incidents with 777,725 occurances. Let's see if the number of ladders deployed by borough will match with the amount of incidents by borough.**</span>
 
 ```{r}
 # How many ladders were deployed?
@@ -99,8 +93,8 @@ FireJoin %>%
   xlab("Borough")
 ```
 
-**The number of ladders deployed does match with the amount of fire incidents by borough. In fact, the descending order is the exact same. To further visualize this connection, we can plot ladders and incidents on a scatterplot.**
-
+<span style="color:red">**The number of ladders deployed does match with the amount of fire incidents by borough. In fact, the descending order is the exact same. To further visualize this connection, we can plot ladders and incidents on a scatterplot.**
+</span>
 ```{r}
 # Plot ladders & incidents on a scatterplot
 FireJoin %>%
@@ -111,7 +105,7 @@ FireJoin %>%
 
 
 
-**As the scatterplot shows, there is a clear linear relationship between the two variables. This means that ladders deployed and number of fires are heavily correlated. Let's see which days these fires were most likely to occur.**
+<span style="color:red">**As the scatterplot shows, there is a clear linear relationship between the two variables. This means that ladders deployed and number of fires are heavily correlated. Let's see which days these fires were most likely to occur.**</span>
 
 ```{r}
 # What days were these fires most likely to occur?
@@ -127,7 +121,7 @@ FireDays %>%
   head(5)
 ```
 
-**Apparently people really like to start fires in February! In this case, the lower the rank, the higher the amount of fires. The 5 days with the most amounts of fires are all in the second month! However, we should look at which month had the most amount of medical emergencies, by creating a chart of months and fire types.**
+<span style="color:red">**Apparently people really like to start fires in February! In this case, the lower the rank, the higher the amount of fires. The 5 days with the most amounts of fires are all in the second month! However, we should look at which month had the most amount of medical emergencies, by creating a chart of months and fire types.**</span>
 
 ```{r}
 pattern <- ("[0-7]{4}[-]")
@@ -145,8 +139,8 @@ FireIncidents %>%
 FireTypes
 ```
 
-**Oddly enough, even though the top five worst fire days were in February, the second month actually has the least amount of medical emergencies associated with those fires! In fact, the most medical emergencies come from July, a completely different season.**
-
+<span style="color:red">**Oddly enough, even though the top five worst fire days were in February, the second month actually has the least amount of medical emergencies associated with those fires! In fact, the most medical emergencies come from July, a completely different season.**
+</span>
 
 
 
