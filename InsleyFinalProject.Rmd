@@ -2,7 +2,8 @@
 title: "Final Project"
 author: "Drew Insley"
 date: "12/04/18"
-output: html_notebook
+output: html_pretty
+theme: leonids
 ---
 
 ## Set Up
@@ -13,6 +14,17 @@ library(rvest)
 library(lubridate)
 library(tidyr)
 ```
+
+## Introduction
+
+
+
+
+
+
+
+
+
 
 ## Project
 
