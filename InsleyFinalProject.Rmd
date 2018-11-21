@@ -50,7 +50,7 @@ FireIncidents %>%
 FireIncidents
 ```
 
-<span style="color:red">**Now we have a dataset we can use! Let's make a chart of counts for incidents and ladders by borough, so that we can graph these data.**</span>
+<span style="color:red">**Now we have a dataset we can use. Let's make a chart of counts for incidents and ladders by borough, so that we can graph these data.**</span>
 
 ```{r message=FALSE, warning=FALSE}
 # Make a chart of counts
@@ -118,7 +118,7 @@ FireDays %>%
   head(5)
 ```
 
-<span style="color:red">**Apparently people really like to start fires in February! In this case, the lower the rank, the higher the amount of fires. The 5 days with the most amounts of fires are all in the second month! However, we should look at which month had the most amount of medical emergencies, in order to determine the most dangerous month.**</span>
+<span style="color:red">**Apparently people really like to start fires in February! In this case, the lower the rank, the higher the amount of fires. The 5 days with the most amounts of fires are all in the second month. However, we should look at which month had the most amount of medical emergencies, in order to determine the most dangerous month in terms of fire occurances.**</span>
 
 ```{r}
 pattern <- ("[0-7]{4}[-]")
@@ -136,9 +136,16 @@ FireIncidents %>%
 FireTypes
 ```
 
-<span style="color:red">**Oddly enough, even though the top five worst fire days were in February, the second month actually has the least amount of medical emergencies associated with those fires! In fact, the most medical emergencies come from July, a completely different season.**
+<span style="color:red">**Oddly enough, even though the top five worst fire days were in February, the second month actually has the least amount of medical emergencies associated with those fires. In fact, the most medical emergencies come from July. Perhaps the most important thing to observe however is the specific location the most fires occur. One can do this by looking at number of fires by Zip Code.**
 </span>
 
+```{r}
+# Where do the most fires happen?
+
+
+
+
+```
 
 
 
