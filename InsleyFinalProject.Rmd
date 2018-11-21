@@ -72,7 +72,7 @@ FireJoin
 
 ```{r}
 # Which borough had the most number of fire incidents?
-FireCount %>%
+FireJoin %>%
   ggplot(aes(reorder(Borough, desc(Incidents)), Incidents)) +
   geom_bar(stat="identity", fill="blue", color="red", alpha=.2) +
   xlab("Borough")
@@ -82,15 +82,28 @@ FireCount %>%
 
 ```{r}
 # How many ladders were deployed?
-FireLadders %>%
+FireJoin %>%
   ggplot(aes(reorder(Borough, desc(Ladders)), Ladders)) +
   geom_bar(stat="identity", fill="red", color="blue", alpha=.2) +
   xlab("Borough")
 ```
 
-**The number of ladders deployed does match with the amount of fire incidents by borough. In fact, the descending order is the exact same. Let's see which days these fires were most likely to occur.**
+**The number of ladders deployed does match with the amount of fire incidents by borough. In fact, the descending order is the exact same. To further visualize this connection, we can plot ladders and incidents on a scatterplot.**
 
 ```{r}
+# Plot ladders & incidents on a scatterplot
+FireJoin %>%
+  ggplot(aes(Ladders, Incidents)) +
+  geom_point(shape=1, aes(color= Borough)) +
+  geom_smooth(method=lm, se=FALSE)
+```
+
+
+
+**As the scatterplot shows, the population correlation, or rho, seems to be very close to 1. This means that ladders deployedand number of fires are heavily correlated. Let's see which days these fires were most likely to occur.**
+
+```{r}
+# What days were these fires most likely to occur?
 FireDays <-
 FireIncidents %>%
   group_by(Date) %>%
@@ -103,7 +116,30 @@ FireDays %>%
   head(5)
 ```
 
-**Apparently people really like to start fires in February! In this case, the lower the rank, the higher the amount of fires. The 5 days with the most amounts of fires are all in the second month!**
+**Apparently people really like to start fires in February! In this case, the lower the rank, the higher the amount of fires. The 5 days with the most amounts of fires are all in the second month! However, we should look at which month had the most amount of medical emergencies, by creating a chart of months and fire types.**
+
+```{r}
+pattern <- ("[0-7]{4}[-]")
+
+FireTypes <-
+FireIncidents %>%
+  select(Date, Type) %>%
+  mutate(Month = gsub(pattern, " ", Date)) %>%
+  mutate(Month = gsub(("[-][0-9]{2}"), " ", Date)) %>%
+  group_by(Month, Type) %>%
+  summarise(Count=n()) %>%
+  filter(Type == 'Medical Emergencies') %>%
+  arrange(desc(Count))
+
+FireTypes
+```
+
+**Oddly enough, even though the top five worst fire days were in February, the second month actually has the least amount of medical emergencies associated with those fires! In fact, the most medical emergencies come from July, a completely different season.**
+
+
+
+
+
 
 
 
