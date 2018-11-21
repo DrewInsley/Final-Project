@@ -2,8 +2,7 @@
 title: "Final Project"
 author: "Drew Insley"
 date: "12/04/18"
-output: html_pretty
-theme: leonids
+output: html_document
 ---
 
 ## Set Up
@@ -112,7 +111,7 @@ FireJoin %>%
 
 
 
-**As the scatterplot shows, the population correlation, or rho, seems to be very close to 1. This means that ladders deployedand number of fires are heavily correlated. Let's see which days these fires were most likely to occur.**
+**As the scatterplot shows, there is a clear linear relationship between the two variables. This means that ladders deployed and number of fires are heavily correlated. Let's see which days these fires were most likely to occur.**
 
 ```{r}
 # What days were these fires most likely to occur?
