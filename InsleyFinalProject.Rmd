@@ -44,37 +44,48 @@ FireIncidents %>%
 FireIncidents
 ```
 
+**Now we have a dataset we can use! Let's make a chart of counts for incidents and ladders by borough, so that we can graph these data!**
+
 ```{r}
-# Which borough had the most number of fire incidents?
+# Make a chart of counts
 FireCount <-
 FireIncidents %>%
   group_by(Borough) %>%
   summarise(Incidents=n()) %>%
   arrange(desc(Incidents))
 
-FireCount %>%
-  ggplot(aes(reorder(Borough, desc(Incidents)), Incidents)) +
-  geom_bar(stat="identity", fill="blue", color="red", alpha=.2) +
-  xlab("Borough")
-  
-```
-
-**The graph shows the descending order of fire incidents in the five boroughs of New York. As one can see, Brooklyn had the most fire incidents with 777,725 occurances. Let's see if the number of ladders deployed by borough will match with the amount of incidents by borough.**
-
-```{r}
-# How many ladders were deployed?
 FireLadders <-
 FireIncidents %>%
   group_by(Borough) %>%
   summarise(Ladders=sum(Ladders)) %>%
   arrange(desc(Ladders))
 
+
+FireJoin <-
+  FireCount %>%
+  inner_join(FireLadders)
+
+FireJoin
+```
+
+
+
+```{r}
+# Which borough had the most number of fire incidents?
+FireCount %>%
+  ggplot(aes(reorder(Borough, desc(Incidents)), Incidents)) +
+  geom_bar(stat="identity", fill="blue", color="red", alpha=.2) +
+  xlab("Borough")
+```
+
+**The graph shows the descending order of fire incidents in the five boroughs of New York. As one can see, Brooklyn had the most fire incidents with 777,725 occurances. Let's see if the number of ladders deployed by borough will match with the amount of incidents by borough.**
+
+```{r}
+# How many ladders were deployed?
 FireLadders %>%
   ggplot(aes(reorder(Borough, desc(Ladders)), Ladders)) +
   geom_bar(stat="identity", fill="red", color="blue", alpha=.2) +
   xlab("Borough")
-  
-
 ```
 
 **The number of ladders deployed does match with the amount of fire incidents by borough. In fact, the descending order is the exact same. Let's see which days these fires were most likely to occur.**
