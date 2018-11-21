@@ -50,7 +50,7 @@ FireIncidents %>%
 FireIncidents
 ```
 
-<span style="color:red">**Now we have a dataset we can use. Let's make a chart of counts for incidents and ladders by borough, so that we can graph these data.**</span>
+<span style="color:red">**Now we have a dataset we can use. Let's make a chart of counts for incidents and ladders by borough, so that we can graph these data later.**</span>
 
 ```{r message=FALSE, warning=FALSE}
 # Make a chart of counts
@@ -72,6 +72,21 @@ FireJoin <-
   inner_join(FireLadders)
 ```
 
+<span style="color:red">**Before we check out this data, it is most important to look at specific locations where the most fires happen. We can do this by looking at fire incidents by ZipCode.**</span>
+
+```{r}
+# Where do the most fires happen?
+FireIncidents %>%
+  select(Borough, ZipCode) %>%
+  group_by(Borough, ZipCode) %>%
+  summarise(Count = n()) %>%
+  arrange(desc(Count)) %>%
+  filter(ZipCode != "NA") %>%
+  head(5)
+```
+
+<span style="color:red">**ZipCodes 10456 and 10029 in the Bronx and Manhattan had the most incidents with 42115 and 40677 respectively. Now, let's let at which borough had the most as a whole.**</span>
+
 ```{r}
 # Which borough had the most number of fire incidents?
 FireJoin %>%
@@ -80,7 +95,7 @@ FireJoin %>%
   xlab("Borough")
 ```
 
-<span style="color:red">**The graph shows the descending order of fire incidents in the five boroughs of New York. As one can see, Brooklyn had the most fire incidents with 777,725 occurances. Let's see if the number of ladders deployed by borough will match with the amount of incidents by borough.**</span>
+<span style="color:red">**The graph shows the descending order of fire incidents in the five boroughs of New York. Despite ZipCodes in the Bronx and Manhattan having the most fire incidents, the whole borough of Brooklyn had the most fire incidents with 777,725 occurances. Let's see if the number of ladders deployed by borough will match with the amount of incidents by borough.**</span>
 
 ```{r}
 # How many ladders were deployed?
@@ -136,16 +151,8 @@ FireIncidents %>%
 FireTypes
 ```
 
-<span style="color:red">**Oddly enough, even though the top five worst fire days were in February, the second month actually has the least amount of medical emergencies associated with those fires. In fact, the most medical emergencies come from July. Perhaps the most important thing to observe however is the specific location the most fires occur. One can do this by looking at number of fires by Zip Code.**
+<span style="color:red">**Oddly enough, even though the top five worst fire days were in February, the second month actually has the least amount of medical emergencies associated with those fires. In fact, the most medical emergencies come from July.**
 </span>
-
-```{r}
-# Where do the most fires happen?
-
-
-
-
-```
 
 
 
