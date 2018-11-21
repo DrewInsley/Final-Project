@@ -154,6 +154,11 @@ FireTypes
 <span style="color:red">**Oddly enough, even though the top five worst fire days were in February, the second month actually has the least amount of medical emergencies associated with those fires. In fact, the most medical emergencies come from July.**
 </span>
 
+## Conclusion
+
+<span style="color:red">**The data shows a lot about the location and severity of fire incidents in New York from 2013-2017. The most fires occured in ZipCodes 10456 and 10029 in the Bronx and Manhattan, but Brooklyn had the most fires as a whole, as well as the most fire ladders deployed. In addition, the top five worst days with respect to amount of fires were all in February, but the month with the most medical emergencies related to these fires was actually July.**
+</span>
+
 
 
 
