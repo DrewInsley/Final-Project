@@ -144,9 +144,10 @@ FireIncidents %>%
   mutate(Date = gsub(pattern, " ", Date)) %>%
   mutate(Date = gsub(("[-][0-9]{2}"), " ", Date)) %>%
   group_by(Date, Type) %>%
-  summarise(Count=n()) %>%
+  summarise(Emergencies=n()) %>%
   filter(Type == 'Medical Emergencies') %>%
-  arrange(desc(Count))
+  arrange(desc(Emergencies)) %>%
+  select(Date, Emergencies)
 
 FireTypes
 ```
