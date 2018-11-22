@@ -360,7 +360,7 @@ FireDays %&gt;%
 <p><span style="color:red"><strong>Apparently people really like to start fires in February! In this case, the lower the rank, the higher the amount of fires. The 5 days with the most amounts of fires are all in the second month. However, we should look at which month had the most amount of medical emergencies, in order to determine the most dangerous month in terms of fire occurances.</strong></span></p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucGF0dGVybiA8LSAoXCJbMC03XXs0fVstXVwiKVxuRmlyZVR5cGVzIDwtXG5GaXJlSW5jaWRlbnRzICU+JVxuICBzZWxlY3QoRGF0ZSwgVHlwZSkgJT4lXG4gIG11dGF0ZShEYXRlID0gZ3N1YihwYXR0ZXJuLCBcIiBcIiwgRGF0ZSkpICU+JVxuICBtdXRhdGUoRGF0ZSA9IGdzdWIoKFwiWy1dWzAtOV17Mn1cIiksIFwiIFwiLCBEYXRlKSkgJT4lXG4gIGdyb3VwX2J5KERhdGUsIFR5cGUpICU+JVxuICBzdW1tYXJpc2UoQ291bnQ9bigpKSAlPiVcbiAgZmlsdGVyKFR5cGUgPT0gJ01lZGljYWwgRW1lcmdlbmNpZXMnKSAlPiVcbiAgYXJyYW5nZShkZXNjKENvdW50KSlcbkZpcmVUeXBlc1xuYGBgIn0= -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucGF0dGVybiA8LSAoXCJbMC03XXs0fVstXVwiKVxuRmlyZVR5cGVzIDwtXG5GaXJlSW5jaWRlbnRzICU+JVxuICBzZWxlY3QoRGF0ZSwgVHlwZSkgJT4lXG4gIG11dGF0ZShEYXRlID0gZ3N1YihwYXR0ZXJuLCBcIiBcIiwgRGF0ZSkpICU+JVxuICBtdXRhdGUoRGF0ZSA9IGdzdWIoKFwiWy1dWzAtOV17Mn1cIiksIFwiIFwiLCBEYXRlKSkgJT4lXG4gIGdyb3VwX2J5KERhdGUsIFR5cGUpICU+JVxuICBzdW1tYXJpc2UoQ291bnQ9bigpKSAlPiVcbiAgZmlsdGVyKFR5cGUgPT0gJ01lZGljYWwgRW1lcmdlbmNpZXMnKSAlPiVcbiAgYXJyYW5nZShkZXNjKENvdW50KSlcbmBgYCJ9 -->
 <pre class="r"><code>pattern &lt;- (&quot;[0-7]{4}[-]&quot;)
 FireTypes &lt;-
 FireIncidents %&gt;%
@@ -370,16 +370,8 @@ FireIncidents %&gt;%
   group_by(Date, Type) %&gt;%
   summarise(Count=n()) %&gt;%
   filter(Type == 'Medical Emergencies') %&gt;%
-  arrange(desc(Count))
-FireTypes</code></pre>
+  arrange(desc(Count))</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImdyb3VwZWRfZGYiLCJ0YmxfZGYiLCJ0YmwiLCJkYXRhLmZyYW1lIl0sIm5jb2wiOjMsIm5yb3ciOjEyfSwicmRmIjoiSDRzSUFBQUFBQUFBQTVWU1BVOENNUmgrZThkaHVLQ1NrRGd6bTBBQThXczBBaHNPYWdoclBRcGVQSHFrOUVRM1hIVFNuK0J1WWt4YzFNSEZ5Yi9oajNBR2Uxd0w1WXlEUTN2UFBlOUhuK2R0RDZ1dHN0MnlBY0FBMDBKZ21BSW1ETEVoU0VBcS9GNEFtRmtCd2toR3JMUU1KSExGN2R3YzcyaDRhNDVMUlkzZjFQQ3VsbFBXY0VuTHFXaFk1emMwTEdyQlhKN3FDa1gvYXkwWVRYcmtuSGdENlRJcDJXeUR0RjBIZTdsYWo3QXVvWTVMQmpLVVZxRkdmVTl4YXdjKy9idGlWWXRxUlZsQkgzRVdPRHhnSWxKMzJhd2k4NHRmRkcwNUhoNG96VE1uSGV4d253azBGaXVhRGZwOEIvUlJBL1RXQmZSOEEranBGZEJqRTlEOUY2RGJPMERYRDRDdWhvQkc2NENhTDlFeDVpVFcyVzVqamdzZGhuc2tMb1FLVGdreDFmVlVNU2NLSDEvMkZiYjIvWUR5V0ljVTg0Y0YxU1VVYll6RU5wbE12aU1qQzhsTGZwKzdQaFdwUnZnMnJaaE94R0pFSnFCaDYzYmVPUTNvV2I1VUNjM0lod0R5UENRZmtjSm1kR1pDRGNGUzR5VzA2OUtaRncrZkVFLytyQWdQVXd1RlBuT0ZRemsxd1E0SzNPZFk1ZG1PN3lrbXVxWHhEem1NVjhPS0F3QUEifQ== -->
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":["Date"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Type"],"name":[2],"type":["fctr"],"align":["left"]},{"label":["Count"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"07","2":"Medical Emergencies","3":"116668"},{"1":"08","2":"Medical Emergencies","3":"115013"},{"1":"06","2":"Medical Emergencies","3":"112743"},{"1":"10","2":"Medical Emergencies","3":"110983"},{"1":"05","2":"Medical Emergencies","3":"110263"},{"1":"09","2":"Medical Emergencies","3":"109654"},{"1":"12","2":"Medical Emergencies","3":"106208"},{"1":"11","2":"Medical Emergencies","3":"101774"},{"1":"04","2":"Medical Emergencies","3":"100009"},{"1":"01","2":"Medical Emergencies","3":"98679"},{"1":"03","2":"Medical Emergencies","3":"98346"},{"1":"02","2":"Medical Emergencies","3":"87734"}],"options":{"columns":{"min":{},"max":[10],"total":[3]},"rows":{"min":[10],"max":[10],"total":[12]},"pages":{}}}
-  </script>
-</div>
-<!-- rnb-frame-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p><span style="color:red"><strong>Oddly enough, even though the top five worst fire days were in February, the second month actually has the least amount of medical emergencies associated with those fires. In fact, the most medical emergencies come from July.</strong> </span></p>
