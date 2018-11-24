@@ -47,7 +47,8 @@ FireIncidents %>%
   mutate(Date = gsub("[AMP]{2}", " ", Date)) %>%
   mutate(Date = mdy(Date))
 
-FireIncidents
+FireIncidents %>%
+  head(5)
 ```
 
 <span style="color:red">**Now we have a dataset we can use. Let's make a chart of counts for incidents and ladders by borough, so that we can graph these data later.**</span>
