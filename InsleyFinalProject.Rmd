@@ -118,7 +118,7 @@ FireJoin %>%
 
 
 
-<span style="color:red">**As the scatterplot shows, there is a clear linear relationship between the two variables. This means that ladders deployed and number of fires are heavily correlated, as expected. Let's take a look at which days these fires were most likely to occur.**</span>
+<span style="color:red">**As the scatterplot shows, there is a clear linear relationship between the two variables and they are heavily correlated, as expected. Let's take a look at which days these fires were most likely to occur.**</span>
 
 ```{r}
 # What days were these fires most likely to occur?
