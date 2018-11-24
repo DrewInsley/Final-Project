@@ -54,7 +54,7 @@ FireIncidents %>%
 <span style="color:red">**Now we have a dataset we can use. Let's make a chart of counts for incidents and ladders by borough, so that we can graph these data later.**</span>
 
 ```{r message=FALSE, warning=FALSE}
-# Make a chart of counts
+# Make a chart of counts for ladders and incidents
 FireCount <-
 FireIncidents %>%
   group_by(Borough) %>%
