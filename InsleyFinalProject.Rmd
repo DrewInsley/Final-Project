@@ -38,7 +38,6 @@ str(FireIncidents)
 ```{r}
 # Clean up the data
 pattern <- ("[0-9]{2}[:][0-9]{2}[:][0-9]{2}")
-
 FireIncidents <-
 FireIncidents %>%
   select(INCIDENT_BOROUGH, INCIDENT_DATETIME, ENGINES_ASSIGNED_QUANTITY, INCIDENT_CLASSIFICATION_GROUP, ZIPCODE, LADDERS_ASSIGNED_QUANTITY) %>%
@@ -91,9 +90,10 @@ FireIncidents %>%
 ```{r}
 # Which borough had the most number of fire incidents?
 FireJoin %>%
-  ggplot(aes(reorder(Borough, desc(Incidents)), Incidents)) +
+  ggplot(aes(reorder(Borough, desc(Incidents)), Incidents/1000)) +
   geom_bar(stat="identity", fill="blue", color="red", alpha=.2) +
-  xlab("Borough")
+  xlab("Borough") +
+  ylab("Incidents (in thousands)")
 ```
 
 <span style="color:red">**The graph shows the descending order of fire incidents in the five boroughs of New York. Despite ZipCodes in the Bronx and Manhattan having the most fire incidents, the whole borough of Brooklyn had the most fire incidents with 777,725 occurances. Let's see if the number of ladders deployed by borough will match with the amount of incidents by borough.**</span>
@@ -101,9 +101,10 @@ FireJoin %>%
 ```{r}
 # How many ladders were deployed?
 FireJoin %>%
-  ggplot(aes(reorder(Borough, desc(Ladders)), Ladders)) +
+  ggplot(aes(reorder(Borough, desc(Ladders)), Ladders/1000)) +
   geom_bar(stat="identity", fill="red", color="blue", alpha=.2) +
-  xlab("Borough")
+  xlab("Borough") +
+  ylab("Ladders (in thousands)")
 ```
 
 <span style="color:red">**The number of ladders deployed does match with the amount of fire incidents by borough. In fact, the descending order is the exact same. To further visualize this connection, we can plot ladders and incidents on a scatterplot.**
@@ -111,9 +112,11 @@ FireJoin %>%
 ```{r}
 # Plot ladders & incidents on a scatterplot
 FireJoin %>%
-  ggplot(aes(Ladders, Incidents)) +
+  ggplot(aes(Ladders/1000, Incidents/1000)) +
   geom_point(shape=1, aes(color= Borough)) +
-  geom_smooth(method=lm, se=FALSE)
+  geom_smooth(method=lm, se=FALSE) +
+  xlab("Ladders (in thousands)") +
+  ylab("Incidents (in thousands)")
 ```
 
 
