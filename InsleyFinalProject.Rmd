@@ -14,6 +14,7 @@ library(DataComputing)
 library(rvest)
 library(lubridate)
 library(tidyr)
+library(party)
 ```
 
 ## Introduction
@@ -140,6 +141,7 @@ FireDays %>%
 <span style="color:red">**Apparently people really like to start fires in February! In this case, the lower the rank, the higher the amount of fires. The 5 days with the most amounts of fires are all in the second month. However, we should look at which month had the most amount of medical emergencies, in order to determine the most dangerous month in terms of fire occurances.**</span>
 
 ```{r}
+# What month had the most medical emergencies?
 pattern <- ("[0-7]{4}[-]")
 
 FireTypes <-
@@ -165,6 +167,13 @@ FireTypes
 </span>
 
 
+## Thought Provoker
+
+```{r}
+# What is the probability of a fire occuring based on certain predictors?
+
+FireIncidents %>%
+  ctree()
 
 
 
