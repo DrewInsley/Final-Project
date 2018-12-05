@@ -57,13 +57,13 @@ FireIncidents %>%
 FireCount <-
 FireIncidents %>%
   group_by(Borough) %>%
-  summarise(Incidents=n()) %>%
+  summarise(Incidents = n()) %>%
   arrange(desc(Incidents))
 
 FireLadders <-
 FireIncidents %>%
   group_by(Borough) %>%
-  summarise(Ladders=sum(Ladders)) %>%
+  summarise(Ladders = sum(Ladders)) %>%
   arrange(desc(Ladders))
 
 
@@ -91,7 +91,7 @@ FireIncidents %>%
 # Which borough had the most number of fire incidents?
 FireJoin %>%
   ggplot(aes(reorder(Borough, desc(Incidents)), Incidents/1000)) +
-  geom_bar(stat="identity", fill="blue", color="red", alpha=.2) +
+  geom_bar(stat = "identity", fill = "blue", color = "red", alpha = .2) +
   xlab("Borough") +
   ylab("Incidents (in thousands)")
 ```
@@ -102,7 +102,7 @@ FireJoin %>%
 # How many ladders were deployed?
 FireJoin %>%
   ggplot(aes(reorder(Borough, desc(Ladders)), Ladders/1000)) +
-  geom_bar(stat="identity", fill="red", color="blue", alpha=.2) +
+  geom_bar(stat = "identity", fill = "red", color = "blue", alpha = .2) +
   xlab("Borough") +
   ylab("Ladders (in thousands)")
 ```
@@ -113,8 +113,8 @@ FireJoin %>%
 # Plot ladders & incidents on a scatterplot
 FireJoin %>%
   ggplot(aes(Ladders/1000, Incidents/1000)) +
-  geom_point(shape=1, aes(color= Borough)) +
-  geom_smooth(method=lm, se=FALSE) +
+  geom_point(shape = 1, aes(color = Borough)) +
+  geom_smooth(method = lm, se = FALSE) +
   xlab("Ladders (in thousands)") +
   ylab("Incidents (in thousands)")
 ```
@@ -128,7 +128,7 @@ FireJoin %>%
 FireDays <-
 FireIncidents %>%
   group_by(Date) %>%
-  summarise(Count=n()) %>%
+  summarise(Count = n()) %>%
   mutate(Rank = rank(desc(Count))) %>%
   select(Date, Rank) %>%
   arrange(Rank)
