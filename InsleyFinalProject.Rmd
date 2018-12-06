@@ -4,7 +4,7 @@ author: "Drew Insley"
 date: "12/04/18"
 output:
   html_notebook:
-    theme: "readable"
+    theme: "journal"
 ---
 
 ## Set Up
