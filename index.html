@@ -287,12 +287,12 @@ FireIncidents %&gt;%
 FireCount &lt;-
 FireIncidents %&gt;%
   group_by(Borough) %&gt;%
-  summarise(Incidents=n()) %&gt;%
+  summarise(Incidents = n()) %&gt;%
   arrange(desc(Incidents))
 FireLadders &lt;-
 FireIncidents %&gt;%
   group_by(Borough) %&gt;%
-  summarise(Ladders=sum(Ladders)) %&gt;%
+  summarise(Ladders = sum(Ladders)) %&gt;%
   arrange(desc(Ladders))
 FireJoin &lt;-
   FireCount %&gt;%
@@ -329,7 +329,7 @@ FireIncidents %&gt;%
 <pre class="r"><code># Which borough had the most number of fire incidents?
 FireJoin %&gt;%
   ggplot(aes(reorder(Borough, desc(Incidents)), Incidents/1000)) +
-  geom_bar(stat=&quot;identity&quot;, fill=&quot;blue&quot;, color=&quot;red&quot;, alpha=.2) +
+  geom_bar(stat = &quot;identity&quot;, fill = &quot;blue&quot;, color = &quot;red&quot;, alpha = .2) +
   xlab(&quot;Borough&quot;) +
   ylab(&quot;Incidents (in thousands)&quot;)</code></pre>
 <!-- rnb-source-end -->
@@ -345,7 +345,7 @@ FireJoin %&gt;%
 <pre class="r"><code># How many ladders were deployed?
 FireJoin %&gt;%
   ggplot(aes(reorder(Borough, desc(Ladders)), Ladders/1000)) +
-  geom_bar(stat=&quot;identity&quot;, fill=&quot;red&quot;, color=&quot;blue&quot;, alpha=.2) +
+  geom_bar(stat = &quot;identity&quot;, fill = &quot;red&quot;, color = &quot;blue&quot;, alpha = .2) +
   xlab(&quot;Borough&quot;) +
   ylab(&quot;Ladders (in thousands)&quot;)</code></pre>
 <!-- rnb-source-end -->
@@ -361,8 +361,8 @@ FireJoin %&gt;%
 <pre class="r"><code># Plot ladders &amp; incidents on a scatterplot
 FireJoin %&gt;%
   ggplot(aes(Ladders/1000, Incidents/1000)) +
-  geom_point(shape=1, aes(color= Borough)) +
-  geom_smooth(method=lm, se=FALSE) +
+  geom_point(shape = 1, aes(color = Borough)) +
+  geom_smooth(method = lm, se = FALSE) +
   xlab(&quot;Ladders (in thousands)&quot;) +
   ylab(&quot;Incidents (in thousands)&quot;)</code></pre>
 <!-- rnb-source-end -->
@@ -379,7 +379,7 @@ FireJoin %&gt;%
 FireDays &lt;-
 FireIncidents %&gt;%
   group_by(Date) %&gt;%
-  summarise(Count=n()) %&gt;%
+  summarise(Count = n()) %&gt;%
   mutate(Rank = rank(desc(Count))) %&gt;%
   select(Date, Rank) %&gt;%
   arrange(Rank)
