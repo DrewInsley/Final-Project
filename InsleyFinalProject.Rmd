@@ -4,7 +4,9 @@ author: "Drew Insley"
 date: "12/04/18"
 output:
   html_notebook:
-    theme: "journal"
+    theme: journal
+  html_document:
+    df_print: paged
 ---
 
 ## Set Up
