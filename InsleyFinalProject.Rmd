@@ -179,7 +179,7 @@ ctree(Type == "Medical Emergencies" ~ Engines, data = FireIncidents)
 plot(Predictors, type = "simple")
 ```
 
-<span style="color:red">**To add to my findings, I have created a ctree to demonstrate the likeliness of a medical emergency based on the number of engines deployed.**
+<span style="color:red">**To add to my findings, I have created a ctree to demonstrate the likeliness of a medical emergency based on the number of engines deployed. Most strikingly it shows that if the number of engines is > 0, the probability of a medical emergency is .724.**
 </span>
 
 
