@@ -16,6 +16,7 @@ library(DataComputing)
 library(rvest)
 library(lubridate)
 library(tidyr)
+library(party)
 ```
 
 ## Introduction
@@ -166,3 +167,19 @@ FireTypes
 
 <span style="color:red">**The data show crucial elements of the location and severity of fire incidents in New York from 2013-2017. The most fires occured in ZipCodes 10456 and 10029 in the Bronx and Manhattan, but Brooklyn had the most fires as a whole, as well as the most fire ladders deployed. In addition, the top five worst days with respect to amount of fires were all in February, but the month with the most medical emergencies related to these fires was actually July. So if you are in New York in July, stay out of Brooklyn!**
 </span>
+
+
+## Thought Provoker
+
+```{r}
+# Create a tree showing the probability of a medical emergency based on number of engines deployed
+Predictors <-
+ctree(Type == "Medical Emergencies" ~ Engines, data = FireIncidents)
+
+plot(Predictors, type = "simple")
+```
+
+<span style="color:red">**To add to my findings, I have created a ctree to demonstrate the likeliness of a medical emergency based on the number of engines deployed.**
+</span>
+
+
