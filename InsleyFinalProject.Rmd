@@ -109,7 +109,7 @@ FireJoin %>%
   ylab("Ladders (in thousands)")
 ```
 
-<span style="color:red">**The number of ladders deployed does match to almost exactly 3/4 the amount of fire incidents by borough. In fact, the descending order of counts is the exact same. To further visualize this connection, we can plot ladders and incidents on a scatterplot.**
+<span style="color:red">**The number of ladders deployed does match to almost exactly three-quarters the amount of fire incidents by borough. In fact, the descending order of counts is the exact same. To further visualize this connection, we can plot ladders and incidents on a scatterplot.**
 </span>
 ```{r}
 # Plot ladders & incidents on a scatterplot
