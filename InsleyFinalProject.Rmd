@@ -12,6 +12,7 @@ output:
 ## Set Up
 
 ```{r message=FALSE, warning=FALSE}
+rm(list = ls())
 library(DataComputing)
 library(rvest)
 library(lubridate)
@@ -44,10 +45,10 @@ pattern <- ("[0-9]{2}[:][0-9]{2}[:][0-9]{2}")
 FireIncidents <-
 FireIncidents %>%
   select(INCIDENT_BOROUGH, INCIDENT_DATETIME, ENGINES_ASSIGNED_QUANTITY, INCIDENT_CLASSIFICATION_GROUP, ZIPCODE, LADDERS_ASSIGNED_QUANTITY) %>%
-  rename(Borough = INCIDENT_BOROUGH, Date = INCIDENT_DATETIME, Engines = ENGINES_ASSIGNED_QUANTITY, Type = INCIDENT_CLASSIFICATION_GROUP, Ladders = LADDERS_ASSIGNED_QUANTITY, ZipCode = ZIPCODE) %>%
-  mutate(Date = gsub(pattern, " ", Date)) %>%
-  mutate(Date = gsub("[AMP]{2}", " ", Date)) %>%
-  mutate(Date = mdy(Date))
+  rename(borough = INCIDENT_BOROUGH, date = INCIDENT_DATETIME, engines = ENGINES_ASSIGNED_QUANTITY, type = INCIDENT_CLASSIFICATION_GROUP, ladders = LADDERS_ASSIGNED_QUANTITY, zipcode = ZIPCODE) %>%
+  mutate(date = gsub(pattern, " ", date)) %>%
+  mutate(date = gsub("[AMP]{2}", " ", date)) %>%
+  mutate(date = mdy(Date))
 
 FireIncidents %>%
   head(5)
@@ -59,15 +60,15 @@ FireIncidents %>%
 # Make a chart of counts for ladders and incidents
 FireCount <-
 FireIncidents %>%
-  group_by(Borough) %>%
-  summarise(Incidents = n()) %>%
-  arrange(desc(Incidents))
+  group_by(borough) %>%
+  summarise(incidents = n()) %>%
+  arrange(desc(incidents))
 
 FireLadders <-
 FireIncidents %>%
-  group_by(Borough) %>%
-  summarise(Ladders = sum(Ladders)) %>%
-  arrange(desc(Ladders))
+  group_by(borough) %>%
+  summarise(ladders = sum(ladders)) %>%
+  arrange(desc(ladders))
 
 
 FireJoin <-
@@ -80,11 +81,11 @@ FireJoin <-
 ```{r}
 # Where do the most fires happen?
 FireIncidents %>%
-  select(Borough, ZipCode) %>%
-  group_by(Borough, ZipCode) %>%
-  summarise(Count = n()) %>%
-  arrange(desc(Count)) %>%
-  filter(ZipCode != "NA") %>%
+  select(borough, zipcode) %>%
+  group_by(borough, zipcode) %>%
+  summarise(count = n()) %>%
+  arrange(desc(count)) %>%
+  filter(zipcode != "NA") %>%
   head(5)
 ```
 
@@ -93,7 +94,7 @@ FireIncidents %>%
 ```{r}
 # Which borough had the most number of fire incidents?
 FireJoin %>%
-  ggplot(aes(reorder(Borough, desc(Incidents)), Incidents/1000)) +
+  ggplot(aes(reorder(borough, desc(incidents)), incidents/1000)) +
   geom_bar(stat = "identity", fill = "blue", color = "red", alpha = .2) +
   xlab("Borough") +
   ylab("Incidents (in thousands)")
@@ -104,7 +105,7 @@ FireJoin %>%
 ```{r}
 # How many ladders were deployed?
 FireJoin %>%
-  ggplot(aes(reorder(Borough, desc(Ladders)), Ladders/1000)) +
+  ggplot(aes(reorder(borough, desc(ladders)), ladders/1000)) +
   geom_bar(stat = "identity", fill = "red", color = "blue", alpha = .2) +
   xlab("Borough") +
   ylab("Ladders (in thousands)")
@@ -115,8 +116,8 @@ FireJoin %>%
 ```{r}
 # Plot ladders & incidents on a scatterplot
 FireJoin %>%
-  ggplot(aes(Ladders/1000, Incidents/1000)) +
-  geom_point(shape = 1, aes(color = Borough)) +
+  ggplot(aes(ladders/1000, incidents/1000)) +
+  geom_point(shape = 1, aes(color = borough)) +
   geom_smooth(method = lm, se = FALSE) +
   xlab("Ladders (in thousands)") +
   ylab("Incidents (in thousands)")
@@ -130,11 +131,11 @@ FireJoin %>%
 # What days were these fires most likely to occur?
 FireDays <-
 FireIncidents %>%
-  group_by(Date) %>%
-  summarise(Count = n()) %>%
-  mutate(Rank = rank(desc(Count))) %>%
-  select(Date, Rank) %>%
-  arrange(Rank)
+  group_by(date) %>%
+  summarise(count = n()) %>%
+  mutate(rank = rank(desc(count))) %>%
+  select(date, rank) %>%
+  arrange(rank)
 
 FireDays %>%
   head(5)
@@ -148,14 +149,14 @@ pattern <- ("[0-7]{4}[-]")
 
 FireTypes <-
 FireIncidents %>%
-  select(Date, Type) %>%
-  mutate(Date = gsub(pattern, " ", Date)) %>%
-  mutate(Date = gsub(("[-][0-9]{2}"), " ", Date)) %>%
-  group_by(Date, Type) %>%
-  summarise(Emergencies=n()) %>%
-  filter(Type == 'Medical Emergencies') %>%
-  arrange(desc(Emergencies)) %>%
-  select(Date, Emergencies)
+  select(date, type) %>%
+  mutate(date = gsub(pattern, " ", date)) %>%
+  mutate(date = gsub(("[-][0-9]{2}"), " ", date)) %>%
+  group_by(date, type) %>%
+  summarise(emergencies = n()) %>%
+  filter(type == 'Medical Emergencies') %>%
+  arrange(desc(emergencies)) %>%
+  select(date, emergencies)
 
 FireTypes
 ```
@@ -174,10 +175,10 @@ FireTypes
 ```{r}
 # Show a ctree of Medical Emergencies based on Engines, and a linear model summary for Medical Emergencies based on Engines and Ladders
 CTree <-
-ctree(formula = Type == "Medical Emergencies" ~ Engines, data = FireIncidents)
+ctree(formula = type == "Medical Emergencies" ~ engines, data = FireIncidents)
 
 Predictors <-
-lm(formula = Type == "Medical Emergencies" ~ Engines + Ladders, data = FireIncidents)
+lm(formula = type == "Medical Emergencies" ~ engines + ladders, data = FireIncidents)
 
 summary(Predictors)
 plot(CTree, type = "simple")
