@@ -48,7 +48,7 @@ FireIncidents %>%
   rename(borough = INCIDENT_BOROUGH, date = INCIDENT_DATETIME, engines = ENGINES_ASSIGNED_QUANTITY, type = INCIDENT_CLASSIFICATION_GROUP, ladders = LADDERS_ASSIGNED_QUANTITY, zipcode = ZIPCODE) %>%
   mutate(date = gsub(pattern, " ", date)) %>%
   mutate(date = gsub("[AMP]{2}", " ", date)) %>%
-  mutate(date = mdy(Date))
+  mutate(date = mdy(date))
 
 FireIncidents %>%
   head(5)
